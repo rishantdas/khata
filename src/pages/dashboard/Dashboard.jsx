@@ -1,9 +1,12 @@
 import { useSelector } from 'react-redux';
 import { Users, IndianRupee, TrendingUp, Calendar } from 'lucide-react';
+import Button from '../../components/common/Button';
+import { useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
   const { user } = useSelector((state) => state.auth);
   const { customers } = useSelector((state) => state.customers);
+  const navigate = useNavigate();
 
   const totalDue = customers.reduce((sum, customer) => sum + customer.totalDue, 0);
 
@@ -51,6 +54,14 @@ const Dashboard = () => {
             color="text-green-600"
           />
         </div>
+        <Button 
+  onClick={() => navigate('/customers')}
+  fullWidth
+  variant="primary"
+>
+  <Users className="w-4 h-4 inline mr-2" />
+  View All Customers
+</Button>
 
         <div className="bg-white rounded-lg shadow p-6">
           <h2 className="text-xl font-bold mb-4">Recent Activity</h2>
